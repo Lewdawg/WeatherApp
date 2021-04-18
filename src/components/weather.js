@@ -1,7 +1,7 @@
 import React from 'react'
-import './styles.css'
 
-// import { Card } from 'semantic-ui-react'
+// Moment is used for our time line and auto updates the date and day on each request.
+
 import moment from 'moment'
 import { Button } from 'semantic-ui-react';
 
@@ -17,6 +17,7 @@ const WeatherCard = ({ weatherData }) => (
             <p className="header">{weatherData.name}</p>
             <Button className="button" inverted color='blue' circular icon='refresh' onClick={refresh} />
         </div>
+
         <div className="flex">
             <p className="day">{moment().format('dddd')}, <span>{moment().format('LL')}</span></p>
             <p className="description">{weatherData.weather[0].main}</p>

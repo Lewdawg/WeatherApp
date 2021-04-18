@@ -35,26 +35,25 @@ function App() {
           setData(result)
           console.log(result);
         });
-
-      // console.log('Latitude is:', lat)
-      // console.log('Longitude is:', long)
     }
+
     fetchData();
+
   }, [lat, long]);
 
 
   return (
 
     <div className="App">
-      {(typeof data.main != 'undefined') ? (
-        <Weather weatherData={data} />
-      ) : (
-        <div>
+
+      {(typeof data.main != 'undefined') ? (<Weather weatherData={data} />)
+        :
+        (<div>
           <Dimmer active>
             <Loader>Loading..</Loader>
           </Dimmer>
-        </div>
-      )}
+        </div>)
+      }
     </div>
 
   );
