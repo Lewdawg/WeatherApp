@@ -1,6 +1,10 @@
 import './App.css';
 
+import Weather from './components/weather';
+
 import { useState, useEffect } from 'react'
+import { Dimmer, Loader } from 'semantic-ui-react';
+
 
 function App() {
 
@@ -8,25 +12,49 @@ function App() {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
 
+  const [data, setData] = useState([])
 
-  //We get our latitude and longitude using navigator.geolocation 
+
+
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      setLat(position.coords.latitude);
-      setLong(position.coords.longitude);
-    });
 
-    console.log('Latitude is:', lat)
-    console.log('Longitude is:', long)
+    const fetchData = async () => {
 
+      //We get our latitude and longitude using navigator.geolocation 
+      navigator.geolocation.getCurrentPosition(function (position) {
+        setLat(position.coords.latitude);
+        setLong(position.coords.longitude);
+      });
+
+      //After we get our location we pass our coordinates into the API and using our API key we can see the current weather at our location.
+
+      await fetch(`${process.env.REACT_APP_API_URL}/weather/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`)
+        .then(res => res.json())
+        .then(result => {
+          setData(result)
+          console.log(result);
+        });
+
+      // console.log('Latitude is:', lat)
+      // console.log('Longitude is:', long)
+    }
+    fetchData();
   }, [lat, long]);
 
 
   return (
 
     <div className="App">
-
+      {(typeof data.main != 'undefined') ? (
+        <Weather weatherData={data} />
+      ) : (
+        <div>
+          <Dimmer active>
+            <Loader>Loading..</Loader>
+          </Dimmer>
+        </div>
+      )}
     </div>
 
   );
