@@ -3,7 +3,7 @@ import './App.css';
 import Weather from './components/weather';
 
 import { useState, useEffect } from 'react'
-import { Dimmer, Loader } from 'semantic-ui-react';
+import { Dimmer, Loader } from 'semantic-ui-react';   //<-- Semantic UI React provides React components while Semantic UI provides themes as CSS 
 
 
 function App() {
@@ -42,6 +42,7 @@ function App() {
   }, [lat, long]);
 
 
+  // If the data we get from our fetch request does not equal 'undefined' display it else keep displaying the loading page. 
   return (
 
     <div className="App">

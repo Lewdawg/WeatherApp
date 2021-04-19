@@ -1,10 +1,11 @@
 import React from 'react'
 
-// Moment is used for our time line and auto updates the date and day on each request.
 
-import moment from 'moment'
+import moment from 'moment'                     //<-- Moment is used for our time line and auto updates the date and day on each request.
 import { Button } from 'semantic-ui-react';
 
+
+//Reload the page
 const refresh = () => {
     window.location.reload();
 }
