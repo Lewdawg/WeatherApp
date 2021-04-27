@@ -21,7 +21,7 @@ function App() {
 
     const fetchData = async () => {
 
-      //We get our latitude and longitude using navigator.geolocation 
+      //We get our latitude and longitude using navigator.geolocation (navigator is an object that contains more info about certain properties such as geolocation)
       navigator.geolocation.getCurrentPosition(function (position) {
         setLat(position.coords.latitude);
         setLong(position.coords.longitude);
